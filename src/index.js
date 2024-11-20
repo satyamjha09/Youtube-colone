@@ -1,10 +1,7 @@
 import dotenv from 'dotenv'
-
-import express from 'express';
 import connectDB from './config/dbconnect.js';
+import {app} from './app.js'
 
-
-const app = express()
 
 
 dotenv.config(); // This will automatically look for a file named '.env'
