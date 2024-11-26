@@ -19,7 +19,6 @@ const generateAccessAndRefreshToken = async (userId) => {
 
         return { accessToken , refreshToken }
 
-
     } catch(error) {
         console.error(error);
         throw new ApiError(500, "Somthing went wrong while generateing refresh and asscess token")
@@ -32,11 +31,10 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const {fullName , username , email , password  }  = req.body;
 
-    if(
-        [fullName, email, username, password].some((field) => !field?.trim())
-    ) {
-        throw new ApiError(400 , "All fields are required")
+    if (!email || !password || !username || !fullName) {
+      throw new ApiError(400, "All fields are required");
     }
+    
 
     const existedUser = await User.findOne({ 
         $or: [ { username } , { email } ]
@@ -98,6 +96,7 @@ const registerUser = asyncHandler(async (req, res) => {
    
 })
 
+
 const loginUser = asyncHandler(async (req, res) => {
 
     const {email, username, password} = req.body;
@@ -105,7 +104,6 @@ const loginUser = asyncHandler(async (req, res) => {
 
     if(!(username || email)) {
         throw new ApiError(400, "username or password is required")
-
     }
 
     const user = await User.findOne({
@@ -318,12 +316,15 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
   }
 
    const user =  await User.findByIdAndUpdate(
+
     req.user?._id,
+
     {
       $set: {
         avatar: avatar.url
       }
     },
+    
     {new: true}
   ).select("-password")
 
