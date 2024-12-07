@@ -3,14 +3,17 @@ import axios from 'axios';
 import Login from './Login';
 
 const App = () => {
-  const [formData, setFormData] = useState({
+
+  const [formData, setFormData] = useState(
+    {
     fullName: '',
     username: '',
     email: '',
     password: '',
     avatar: null,
     coverImage: null,
-  });
+   }
+ );
 
   const [responseMessage, setResponseMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -31,10 +34,12 @@ const App = () => {
 
     // Create FormData object
     const data = new FormData();
+
     data.append('fullName', formData.fullName);
     data.append('username', formData.username);
     data.append('email', formData.email);
     data.append('password', formData.password);
+
     if (formData.avatar) data.append('avatar', formData.avatar);
     if (formData.coverImage) data.append('coverImage', formData.coverImage);
 
@@ -56,9 +61,10 @@ const App = () => {
   return (
     <div style={{ margin: '20px' }}>
 
-      <h1>Register User</h1>
+      <h1> Register User </h1>
 
       <form onSubmit={handleSubmit} encType="multipart/form-data">
+
         <input
           type="text"
           name="fullName"
