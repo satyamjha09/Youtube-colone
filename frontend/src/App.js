@@ -23,7 +23,7 @@ const App = () => {
     setFormData((prev) => ({
       ...prev,
       [name]: files ? files[0] : value,
-    }));
+    })); 
   };
 
   const handleSubmit = async (e) => {
@@ -82,7 +82,8 @@ const App = () => {
           onChange={handleChange}
           required
         />
-        <br />
+
+
         <input
           type="email"
           name="email"
