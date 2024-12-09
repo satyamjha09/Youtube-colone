@@ -122,7 +122,6 @@ const App = () => {
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
 
-      <Login  />
 
     </div>
   )
