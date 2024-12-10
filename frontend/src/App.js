@@ -19,7 +19,9 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
+
     const { name, value, files } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: files ? files[0] : value,
@@ -29,6 +31,7 @@ const App = () => {
   const handleSubmit = async (e) => {
 
     e.preventDefault();
+
     setResponseMessage('');
     setErrorMessage('');
 
@@ -44,6 +47,7 @@ const App = () => {
     if (formData.coverImage) data.append('coverImage', formData.coverImage);
 
     try {
+
       const response = await axios.post('http://localhost:8000/api/v1/users/register', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -52,6 +56,7 @@ const App = () => {
 
       setResponseMessage(response.data.message);
       console.log('Response:', response.data);
+      
     } catch (error) {
       setErrorMessage(error.response?.data?.message || 'An error occurred.');
       console.error('Error:', error.response?.data);
