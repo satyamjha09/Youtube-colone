@@ -56,8 +56,9 @@ const App = () => {
 
       setResponseMessage(response.data.message);
       console.log('Response:', response.data);
-      
+
     } catch (error) {
+      
       setErrorMessage(error.response?.data?.message || 'An error occurred.');
       console.error('Error:', error.response?.data);
     }
